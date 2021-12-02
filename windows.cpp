@@ -78,7 +78,7 @@ char print_base() {
 	std::ifstream(path_g) >> ans;
 	//fin.open("result.txt",)
 	cout << "the snake rules." << endl;
-	cout << "press four keys \"↑↓←→ \" to change the way." << endl;
+	cout << "press four arrow keys \"** up, down, right, left**\" to change the way." << endl;
 	cout << "the hightest garde is: " << ans << endl;
 	cout << "press a key to start the game.('q' to quit)";
 	return _getch();

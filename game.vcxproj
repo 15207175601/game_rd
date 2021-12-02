@@ -39,6 +39,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -102,7 +103,9 @@
     <ClCompile Include="back_server.cpp" />
     <ClCompile Include="run.cpp" />
     <ClCompile Include="snake.cpp" />
-    <ClCompile Include="windows.cpp" />
+    <ClCompile Include="windows.cpp">
+      <UseUnicodeForAssemblerListing Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</UseUnicodeForAssemblerListing>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="food.hpp" />
