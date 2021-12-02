@@ -16,14 +16,28 @@ std::default_random_engine dre;
 std::uniform_int_distribution<int> di(0, 4);
 vector<vector<char>> vvc
 (width - 2, vector<char>(width - 2, base_smb));
+HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+
 
 void set_cursor(int x, int y,char c)
 {
-	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD pos = { 2*y+2,x+1 };//x,y为屏幕坐标
-	SetConsoleCursorPosition(hout, pos);
+	SetConsoleCursorPosition(hOut, pos);
 	putchar(c);
-	SetConsoleCursorPosition(hout, {0,width-1});
+	SetConsoleCursorPosition(hOut, {0,width});
+}
+void hide_cursor() {
+	CONSOLE_CURSOR_INFO cci;
+	GetConsoleCursorInfo(hOut, &cci);
+	cci.bVisible = FALSE;
+	SetConsoleCursorInfo(hOut, &cci);
+}
+void show_cursor() {
+	CONSOLE_CURSOR_INFO cci;
+	GetConsoleCursorInfo(hOut, &cci);
+	cci.bVisible = TRUE;
+	SetConsoleCursorInfo(hOut, &cci);
 }
 
 void print(vector<char>& vc) {
@@ -39,6 +53,7 @@ void print(vector<char>& vc) {
 }
 
 void print_all(vector<vector<char>>& vvc) {
+	hide_cursor();
 	system("cls");//windows
 		//system("printf \"\\033c\"");
 	string s(2 * width - 1, wall_smb);
@@ -63,13 +78,14 @@ char print_base() {
 	std::ifstream(path_g) >> ans;
 	//fin.open("result.txt",)
 	cout << "the snake rules." << endl;
-	cout << "press four keys \"�������� \" to change the way." << endl;
+	cout << "press four keys \"↑↓←→ \" to change the way." << endl;
 	cout << "the hightest garde is: " << ans << endl;
 	cout << "press a key to start the game.('q' to quit)";
 	return _getch();
 }
 
 char print_game_over(Snake& snake) {
+	show_cursor();
 	string res;
 	int grade = snake.size() - 1;
 	if (snake.live())

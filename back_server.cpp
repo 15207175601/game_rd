@@ -10,7 +10,7 @@ char print_game_over(Snake&);
 void set_cursor(int x, int y, char c);
 char c;
 unsigned int speed = width*30;
-unsigned int limit_spped = 250;
+int limit_spped = 250;
 void delay(int time) {
 	clock_t now = clock();
 	while (clock() - now < time) {
@@ -23,6 +23,7 @@ void delay(int time) {
 char run(Snake& snake, Food& food) {
 	auto beg = snake.gethead();
 	auto end = snake.gettail();
+	print_all(vvc);
 	while (snake.size() < max_size && snake.live()) {
 		vvc[beg.first][beg.second] = head_smb;
 		set_cursor(beg.first, beg.second, head_smb);
