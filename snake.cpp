@@ -7,6 +7,7 @@ inline char get_vvc(vector<vector<char>>& vvc, const pair<int, int>& p) {
 inline void set_vvc(vector<vector<char>>& vvc, const pair<int, int>& p, const char& c) {
 	vvc[p.first][p.second] = c;
 }*/
+void set_cursor(int x, int y, char c);
 
 std::pair<int, int> Snake::next() const {
 	auto temp = gethead();
@@ -35,6 +36,7 @@ void Snake::eat(Food& food) {
 	while (temp == body.front())
 		temp = next();
 	if (check(temp)) {
+		set_cursor(body.front().first, body.front().second, body_smb);
 		body.push_front(temp);
 		if (temp.first == food.x && temp.second == food.y)
 			food.flag = false;

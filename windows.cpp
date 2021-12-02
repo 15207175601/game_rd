@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <conio.h>
+#include <Windows.h>
 using std::cout;
 using std::endl;
 using std::vector;
@@ -14,16 +15,25 @@ string path_g = "grade.txt";
 std::default_random_engine dre;
 std::uniform_int_distribution<int> di(0, 4);
 vector<vector<char>> vvc
-(width - 2, vector<char>(width - 2, ' '));
+(width - 2, vector<char>(width - 2, base_smb));
+
+void set_cursor(int x, int y,char c)
+{
+	HANDLE hout = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD pos = { 2*y+2,x+1 };//x,y为屏幕坐标
+	SetConsoleCursorPosition(hout, pos);
+	putchar(c);
+	SetConsoleCursorPosition(hout, {0,width-1});
+}
 
 void print(vector<char>& vc) {
 	string s;
 	s += wall_smb;
 	for (auto p = vc.begin(); p != vc.end(); ++p) {
-		s += ' ';
+		s += base_smb;
 		s += *p;
 	}
-	s += ' ';
+	s += base_smb;
 	s += wall_smb;
 	puts(s.c_str());
 }

@@ -10,6 +10,8 @@ const int norm_size = width - 2;
 const int max_size = norm_size * norm_size;
 const char wall_smb = '#';
 const char body_smb = '*';
+const char head_smb = '@';
+const char base_smb = ' ';
 const int birth = (width / 2) - 1;
 
 extern std::vector<std::vector<char>> vvc;
