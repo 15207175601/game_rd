@@ -17,22 +17,25 @@ vector<vector<char>> vvc
 (width - 2, vector<char>(width - 2, ' '));
 
 void print(vector<char>& vc) {
-	cout << wall_smb;
-	/*for (auto p = vc.begin(); p != vc.end(); ++p) {
-		cout << ' ' << *p;
-	}*/
-	std::for_each(vc.cbegin(), vc.cend(), 
-		[](const char a) {cout << ' ' << a; });
-	cout << ' ' << wall_smb << endl;
+	string s;
+	s += wall_smb;
+	for (auto p = vc.begin(); p != vc.end(); ++p) {
+		s += ' ';
+		s += *p;
+	}
+	s += ' ';
+	s += wall_smb;
+	puts(s.c_str());
 }
 
 void print_all(vector<vector<char>>& vvc) {
 	system("cls");//windows
 		//system("printf \"\\033c\"");
-	cout << string(2 * width - 1, wall_smb) << endl;
+	string s(2 * width - 1, wall_smb);
+	puts(s.c_str());
 	for (int i = 0; i < (width - 2); ++i)
 		print(vvc[i]);
-	cout << string(2 * width - 1, wall_smb) << endl;
+	puts(s.c_str());
 }
 void writer(string path,string res) {
 	std::ofstream fout;
@@ -50,7 +53,7 @@ char print_base() {
 	std::ifstream(path_g) >> ans;
 	//fin.open("result.txt",)
 	cout << "the snake rules." << endl;
-	cout << "press four keys \"¡ü¡ý¡û¡ú \" to change the way." << endl;
+	cout << "press four keys \"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ \" to change the way." << endl;
 	cout << "the hightest garde is: " << ans << endl;
 	cout << "press a key to start the game.('q' to quit)";
 	return _getch();
