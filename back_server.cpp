@@ -15,7 +15,6 @@ void delay(int time) {
 		if (_kbhit()) {
 			c = _getch();
 		}
-		print_all(vvc);
 	}
 }
 
