@@ -13,11 +13,10 @@ string path_r = "result.txt";
 string path_g = "grade.txt";
 
 std::default_random_engine dre;
-std::uniform_int_distribution<int> di(0, 4);
+std::uniform_int_distribution<int> di(0, norm_size-1);
 vector<vector<char>> vvc
-(width - 2, vector<char>(width - 2, base_smb));
+(norm_size, vector<char>(norm_size, base_smb));
 HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
-
 
 
 void set_cursor(int x, int y,char c)
