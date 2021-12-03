@@ -37,6 +37,7 @@ void Snake::eat(Food& food) {
 		temp = next();
 	if (check(temp)) {
 		set_cursor(body.front().first, body.front().second, body_smb);
+		vvc[body.front().first][body.front().second] = body_smb;
 		body.push_front(temp);
 		if (temp.first == food.x && temp.second == food.y)
 			food.flag = false;
